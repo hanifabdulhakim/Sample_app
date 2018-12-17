@@ -1,7 +1,61 @@
+
 <% provide(:title, "Home") %>
-<h1>Home</h1>
-<p>
-  This is the home page for the
-  <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-  sample application.
-</p>
+<div class="center jumbotron">
+  <h1>Welcome to the Sample App</h1>
+
+  <h2>
+    This is the home page for the
+    <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
+    sample application.
+  </h2>
+
+  <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
+</div>
+
+<%= link_to image_tag("rails.png", alt: "Rails logo"),
+            'http://rubyonrails.org/' %>
+
+
+
+
+<!DOCTYPE html>
+<html>
+
+  <article class="post-content">
+    <p>I was working on acceptance test for paypal login recently. It was hard on the beginning, because I found that the login form was put inside an iframe. Using plain capybara finder when locating the input text for email and password was painful. That wasn’t working. I should use capybara method <code>within_frame</code> to make it works.<!--more--></p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">within_frame</span> <span class="n">find</span><span class="p">(</span><span class="s2">&quot;iframe&quot;</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">wait_until</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span> <span class="p">{</span> <span class="n">page</span><span class="o">.</span><span class="n">has_css?</span> <span class="s2">&quot;#email&quot;</span> <span class="p">}</span>
+  <span class="n">fill_in</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="ss">with</span><span class="p">:</span> <span class="s2">&quot;sample@mail.com&quot;</span>
+  <span class="n">fill_in</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="ss">with</span><span class="p">:</span> <span class="s2">&quot;passwordsample&quot;</span>
+  <span class="n">click_button</span> <span class="s2">&quot;Log In&quot;</span>
+<span class="k">end</span></code></pre></div>
+
+<p>You see that I use <code>wait_until</code> above. I use that to verify that the email input is loaded on the page or the input cannot be filled in.</p>
+
+<p>I will share more from what I have learned from web development. See you next time.</p>
+
+  </article>
+  <hr>
+  <div id="disqus_thread"></div>
+
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://tsara27.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</html>
