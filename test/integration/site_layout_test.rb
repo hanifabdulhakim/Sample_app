@@ -14,5 +14,3 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
 
   end
 end
-
-FILL_IN
